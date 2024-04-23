@@ -1,9 +1,11 @@
 # μT-Kernel 3.0 BSP2 Samples
-μT-Kernel 3.0 BSP2 (Board Support Package v2)向けの各種サンプルとそのドキュメントです。  
+Various samples and their documents for μT-Kernel 3.0 BSP2 (Board Support Package v2).  
+
+μT-Kernel 3.0 BSP2 (Board Support Package v2)向けの各種サンプルとそのドキュメントです。    
 
 ## Start Guide
 
-This is a start guide for μT-Kernel 3.0 BSP2 using IDE Project.  
+This is Start Guide for μT-Kernel 3.0 BSP2 using IDE Project.  
 
 IDE Projectを使用したμT-Kernel 3.0 BSP2のスタートガイドです。  
 
