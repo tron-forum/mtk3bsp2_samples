@@ -1,7 +1,7 @@
 
 # μT-Kernel 3.0 BSP2 スタートガイド <!-- omit in toc -->
-## STM32Cube & NUCLEO-H723ZG編  Rev.01.00.00 <!-- omit in toc -->
-## 2025.05.29 <!-- omit in toc -->
+## STM32Cube & NUCLEO-H723ZG編  Rev.01.00.01 <!-- omit in toc -->
+## 2025.06.02 <!-- omit in toc -->
 
 ## スタートガイドについて <!-- omit in toc -->
 - 本スタートガイドは、μT-Kernel 3.0 BSP2とマイコンメーカの提供するIDE(統合開発環境)を使用して、マイコンボードNUCLEO-H723ZGで実行するプログラムの作成、デバッグの基本的な方法を説明します。
@@ -10,8 +10,7 @@
 - 本スタートガイドでは、STマイクロエレクトロニクスのIDE STM32CubeIDEとマイコンボードNUCLEO-H723ZGについて説明します。
   - STM32CubeIDE 1.18.1 にて動作確認をしました。
 
-# 目次
-- [目次](#目次)
+# 目次<!-- omit in toc -->
 - [準備](#準備)
   - [μT-Kernel 3.0 BSP2のダウンロード](#μt-kernel-30-bsp2のダウンロード)
   - [STM32CubeIDEのインストール](#stm32cubeideのインストール)
@@ -27,7 +26,6 @@
   - [ペリフェラルの制御](#ペリフェラルの制御)
   - [デバッグ用シリアル通信出力](#デバッグ用シリアル通信出力)
 - [変更履歴](#変更履歴)
-
 
 # 準備
 ## μT-Kernel 3.0 BSP2のダウンロード
@@ -58,21 +56,21 @@
 3. [Select root directory]の[Browse]ボタンを押し、BSP2のプロジェクトのディレクトリを指定します。
 4. BSP2のプロジェクトが表示されていることを確認のうえ[Finish]を押下します。
 
-<img src="images/st/img_st_6.png" width="700px">
+<img src="images/st/img_st_h7_1.jpg" width="500px">
 
 ## プロジェクトの表示
 
 - インポートが正常に終了すると、プロジェクトマネージャーにμT-Kernel 3.0 BSP2のプロジェクトが表示されます。
 - 表示されているファイルをダブルクリックすると、その内容が表示され、編集ができます。
 
-<img src="images/st/img_st_7.png" width="700px">
+<img src="images/st/img_st_h7_2.jpg" width="500px">
 
 ## プロジェクトのビルド
 
 - プロジェクトマネージャーのプロジェクト名を右クリックし、[Build Project]を選択します。
 - プロジェクトのビルドが開始され、正常に終了すると「Build Finished.」が表示されます。
 
-<img src="images/st/img_st_8.png" width="700px">
+<img src="images/st/img_st_h7_3.jpg" width="500px">
 
 # ユーザプログラムの実行とデバッグ
 ## ユーザプログラムの作成
@@ -82,18 +80,14 @@
   - 他のディレクトリから独立に作成しておくと、BSP2のバージョンアップの際に移行が楽になります。
 - 初期状態では、タスクを2つ実行し、それぞれのタスクがボード上のLEDの点滅とデバッグ用シリアル出力を行うプログラムがapp_main.cファイルに記述されています。
 
-<img src="images/st/img_st_14.png" width="700px">
-
 ## デバッグ構成の作成
 
 - プロジェクトマネージャーのプロジェクト名を選択した状態でメニュー[Run]から[Debug Configurations]を選びます。
 
-<img src="images/st/img_st_9.png" width="700px">
+<img src="images/st/img_st_h7_4.jpg" width="500px">
 
 - 表示されたダイアログから[STM32 C/C++ Application]の[mtk3bsp2_stm32h723 Debug]を選択します。
   - [mtk3bsp2_stm32h723 Debug]が表示されていない場合は、[STM32 C/C++ Application]をダブルクリックしてください。直前にビルドしたプロジェクトが対象となります。ビルドの直後に操作してください。
-
-<img src="images/st/img_st_10.png" width="700px">
 
 
 ## デバッグ実行
@@ -103,21 +97,22 @@
 - ダイアログの[Debug]ボタンを押すと、実行プログラムがボードに転送されて実行されデバッグが始まります。
 - [Debug perspective]への切り替えが表示されますので[Switch]ボタンを押下します。デバッグ画面に切り替わります。
 
-<img src="images/st/img_st_11.png" width="700px">
-
 - デバッグが開始すると、app_main.cのusermain関数でブレークします。
 - メニューバーのボタンから以下の基本的なデバッグ操作が可能です。
   - STM32Cube IDEの使用方法は、メーカのWebサイトなどをご覧ください。
-
-<img src="images/st/img_st_12.png" width="700px">
 
 ## ペリフェラルの制御
 
 - μT-Kernel 3.0 BSP2は、A/DコンバータとI2C通信のサンプルデバイスドライバが組み込まれています。
   - サンプルデバイスドライバからはNUCLEO-H723ZGボードのArduino互換コネクタの以下の信号が使用可能です。
-  - 他の信号もプロジェクトのコンフィギュレーション等の変更により使用できます。
 
-<img src="images/st/img_st_15.png" width="700px">
+| Signal Name  | Device Name | Function                   |
+| ------------ | ----------- | -------------------------- |
+| Arduino A0   | hadca       | Analog Input               |
+| Arduino A1   | hadca       | Analog Input               |
+| Arduino I2C   | hiica       | I2C Communication (Master) |
+
+  - 他の信号もプロジェクトのコンフィギュレーション等の変更により使用できます。
 
 ## デバッグ用シリアル通信出力
 - ボードのプログラムからのtm_printf関数によるデバッグ用シリアル出力は、PCのUSBの仮想シリアルポートに入力されます。
@@ -133,4 +128,5 @@
 
 | 版数      | 日付         | 内容                                                      |
 | ------- | ---------- | ------------------------------------------------------- |
+| 1.00.01 | 2025.06.02 | 英語版の図表を統一  |
 | 1.00.00 | 2025.05.29 | 新規作成 |

@@ -1,7 +1,7 @@
 
 # μT-Kernel 3.0 BSP2 スタートガイド <!-- omit in toc -->
-## ModusToolbox & KIT_XMC72_EVK編 Rev.01.00.00 <!-- omit in toc -->
-## 2025.05.29 <!-- omit in toc -->
+## ModusToolbox & KIT_XMC72_EVK編 Rev.01.00.01 <!-- omit in toc -->
+## 2025.06.04 <!-- omit in toc -->
 
 # スタートガイドについて <!-- omit in toc -->
 
@@ -11,8 +11,7 @@
 - 本スタートガイドでは、InfineonのModusToolboxとマイコンボード KIT_XMC72_EVKについて説明します。
   - Eclipse IDE for ModusToolbox 3.5.0にて動作確認をしました。
 
-# 目次
-- [目次](#目次)
+# 目次<!-- omit in toc -->
 - [準備](#準備)
   - [μT-Kernel 3.0 BSP2のダウンロード](#μt-kernel-30-bsp2のダウンロード)
   - [ModusToolboxのインストール](#modustoolboxのインストール)
@@ -44,36 +43,32 @@
   - https://www.infineon.com/cms/jp/design-support/tools/sdk/modustoolbox-software/
   - ModusToolboxについて詳細は上記のWebサイトをご覧ください。
 
-- インストーラによりModusToolbox Setup がインストールされます。ModusToolbox Setup を実行し、[Eclipse IDE for ModusToolbox 3.5.0] と [Modus Toolbox Tools Package 3.5.0] にチェックを入れてインストールしてください。  
+- インストーラによりModusToolbox Setup がインストールされます。ModusToolbox Setup を実行し、[Eclipse IDE for ModusToolbox 2025.4] と [Modus Toolbox Tools Package 3.5.0] にチェックを入れてインストールしてください。  
 
 # プロジェクトの作成
 ## ModusToolboxの実行
 
-- インストールしたModusToolboxを実行します。
+- インストールしたEclipse for ModusToolboxを実行します。
   - 起動時にワークスペースを聞かれます。任意のディレクトリを指定してください。ここにIDEの各種情報が保存されます。
 
 ## プロジェクトのインポート
 1. Quick Panelの[Import Existing Application In-Place]を選択します。
+<img src="images/inf/img_inf_1.jpg" width="600px">
+
 2. [Project Location]の[Browse]ボタンを押し、BSP2のプロジェクトのディレクトリを指定します。
 3. [Finish]を押下します。
-
-<img src="images/inf/img_inf_6.png" width="700px">
-
 
 ## プロジェクトの表示
 
 - インポートが正常に終了すると、プロジェクトマネージャーにμT-Kernel 3.0 BSP2のプロジェクトが表示されます。
 - 表示されているファイルをダブルクリックすると、その内容が表示され、編集ができます。
 
-<img src="images/inf/img_inf_7.png" width="700px">
-
-
 ## プロジェクトのビルド
 
 - プロジェクトマネージャーのプロジェクト名をクリックし、Quick Panelの[Build Application]を選択します。
 - プロジェクトのビルドが開始され、正常に終了すると「Build Finished.」が表示されます。
 
-<img src="images/inf/img_inf_8.png" width="700px">
+<img src="images/inf/img_inf_2.jpg" width="600px">
 
 # ユーザプログラムの実行とデバッグ
 ## ユーザプログラムの作成
@@ -83,21 +78,17 @@
   - 他のディレクトリから独立に作成しておくと、BSP2のバージョンアップの際に移行が楽になります。
 - 初期状態では、タスクを2つ実行し、それぞれのタスクがボード上のLEDの点滅とデバッグ用シリアル出力を行うプログラムがapp_main.cファイルに記述されています。
 
-<img src="images/inf/img_inf_12.png" width="700px">
-
 ## プログラムの実行とデバッグ
 - ボード(KIT_XMC72_EVK)とPCをUSBで接続します。
   - USBはデバッガI/Fとシリアル通信I/Fを兼ねています。
 - プロジェクトを選択した状態でQuick Panelの[mtk3bsp2_xmc7200 Debug(KitProg3_MiniProg4)]を選びます。
 
-<img src="images/inf/img_inf_9.png" width="700px">
+<img src="images/inf/img_inf_3.jpg" width="500px">
 
 - デバッグが開始すると、main.cのmain関数でブレークします。
   - この最初のブレークポイントは、[Debug Configration] の [Startup]タブ内の[Run/Restart Commands]にて変更できます。
 - メニューバーのボタンから基本的なデバッグ操作が可能です。
   - ModusToolboxの使用方法は、メーカのWebサイトなどをご覧ください。
-
-<img src="images/inf/img_inf_10.png" width="700px">
 
 ## デバッグ用シリアル通信出力
 - ボードのプログラムからのtm_printf関数によるデバッグ用シリアル出力は、PCのUSBの仮想シリアルポートに入力されます。
@@ -115,10 +106,15 @@
   - サンプルデバイスドライバからはKIT_XMC72_EVKボードのArduino互換コネクタの以下の信号が使用可能です。
   - 他の信号もプロジェクトのコンフィギュレーション等の変更により使用できます
 
-<img src="images/inf/img_inf_13.png" width="700px">
+| Signal Name  | Device Name | Function                   |
+| ------------ | ----------- | -------------------------- |
+| Arduino A0   | hadcb       | Analog Input               |
+| Arduino A1   | hadcb       | Analog Input               |
+| Arduino I2C   | hiici       | I2C Communication (Master) |
 
 # 変更履歴
 
 | 版数      | 日付         | 内容                                                      |
 | ------- | ---------- | ------------------------------------------------------- |
+| 1.00.01 | 2025.06.04 | 英語版の図表を統一  |
 | 1.00.00 | 2025.05.29 | 新規作成 |

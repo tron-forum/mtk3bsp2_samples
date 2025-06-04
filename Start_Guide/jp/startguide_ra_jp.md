@@ -1,6 +1,6 @@
 # μT-Kernel 3.0 BSP2 スタートガイド <!-- omit in toc -->
-## e² studio & RAマイコン編  Rev.01.00.00 <!-- omit in toc -->
-## 2025.05.29 <!-- omit in toc -->
+## e² studio & RAマイコン編  Rev.01.00.01 <!-- omit in toc -->
+## 2025.06.04 <!-- omit in toc -->
 
 
 # スタートガイドについて <!-- omit in toc -->
@@ -13,8 +13,7 @@
       - EK-RA8D1
       - RA4M1 Clicker
 
-# 目次
-- [目次](#目次)
+# 目次<!-- omit in toc -->
 - [準備](#準備)
   - [μT-Kernel 3.0 BSP2のダウンロード](#μt-kernel-30-bsp2のダウンロード)
   - [e² studioのインストール](#e-studioのインストール)
@@ -68,7 +67,7 @@
 3. [ルート・ディレクトリの選択]の[参照]ボタンを押し、BSP2のプロジェクトのディレクトリを指定します。
 4. BSP2のプロジェクトが表示されていることを確認のうえ[終了]を押下します。
 
-<img src="images/ra/img_ra_6.png" width="700px">
+<img src="images/ra/img_ra_1.jpg" width="500px">
 
 
 ## プロジェクトの表示
@@ -78,14 +77,12 @@
   - 使用している FSP が更新されている場合は、対応するFSPのインストールが要求されます。[Apply and Close]をクリックしてインストールしてください。
 - 表示されているファイルをダブルクリックすると、その内容が表示され、編集ができます。
 
-<img src="images/ra/img_ra_7.png" width="700px">
-
 ## プロジェクトのビルド
 
 - プロジェクトエクスプローラーのプロジェクト名を選択後、右クリックして [プロジェクトのビルド] を選択します。
 - プロジェクトのビルドが開始され、正常に終了すると「Build Finished.」が表示されます。
 
-<img src="images/ra/img_ra_8.png" width="700px">
+<img src="images/ra/img_ra_2.jpg" width="500px">
 
 
 # ユーザプログラムの実行とデバッグ
@@ -96,31 +93,26 @@
   - 他のディレクトリから独立に作成しておくと、BSP2のバージョンアップの際に移行が楽になります。
 - 初期状態では、タスクを2つ実行し、それぞれのタスクがボード上のLEDの点滅とデバッグ用シリアル出力を行うプログラムがapp_main.cファイルに記述されています。
 
-<img src="images/ra/img_ra_15.png" width="700px">
-
-
 ## デバッグ構成の作成
 - プロジェクトマネージャーのプロジェクト名を選択した状態でメニュー[実行]から[デバッグの構成]を選びます。
 
-<img src="images/ra/img_ra_9.png" width="700px">
-
 - 表示されたダイアログから[Renesas GDB Hardware Debugging]から対象プロジェクトのデバッグ構成を選択します。デバッグ構成は[プロジェクト名 Debug_Flat]という名称で表示されています。  
   - 該当するデバッグ構成が表示されていない場合は、[Renesas GDB Hardware Debugging]をダブルクリックしてください。直前にビルドしたプロジェクトのデバッグ構成が作成されます。ビルドの直後に操作してください。
-- 以下の図はEK-RA8M1の場合です。プロジェクト名はマイコンボードにより変わります。
+- 以下の図はEK-RA8D1の場合です。プロジェクト名はマイコンボードにより変わります。
 
-<img src="images/ra/img_ra_10.png" width="700px">
+<img src="images/ra/img_ra_3.jpg" width="500px">
 
 - [Debugger]タブを選択し以下を確認します。
   - Debug hardware : J-Link ARM
   - Target Deveice : (対象のマイコンの型名)
 
-<img src="images/ra/img_ra_11.png" width="600px">
+<img src="images/ra/img_ra_4.jpg" width="500px">
 
 - [Startup]タブを選択し以下を設定します。
   - ブレークポイント設定先: usermain
     - デバッグ実行時にブレークポイントを設定する関数名です
 
-<img src="images/ra/img_ra_12.png" width="600px">
+<img src="images/ra/img_ra_5.jpg" width="500px">
 
 
 ## デバッグ実行
@@ -129,16 +121,10 @@
 - ダイアログの[デバッグ]ボタンを押すと、実行プログラムがボードに転送されて実行されデバッグが始まります。
 - [デバッグ・パースペクティブ]への切り替えが表示されますので[切り替え]ボタンを押下します。デバッグ画面に切り替わります。
 
-<img src="images/ra/img_ra_13.png" width="700px">
-
-
 - 最初にリセットハンドラ(Reset_Handler)で停止します。
 - 実行を開始するとapp_main.cのusermain関数でブレークします。
 - メニューバーのボタンから基本的なデバッグ操作が可能です。
   - e² studioの使用方法は、メーカのWebサイトなどをご覧ください。
-
-<img src="images/ra/img_ra_14.png" width="700px">
-
 
 ## ペリフェラルの制御
 
@@ -148,11 +134,18 @@
 
 - EK-RA8M1およびEK-RA8D1ではArduino互換コネクタの以下の信号が使用可能です。
 
-<img src="images/ra/img_ra_16.png" width="700px">
+| Signal Name  | Device Name | Function                   |
+| ------------ | ----------- | -------------------------- |
+| Arduino A0   | hadca       | Analog Input               |
+| Arduino A1   | hadca       | Analog Input               |
+| Arduino I2C   | htiica     | I2C Communication (Master) |
 
 - RA4M1 ClickerではmikroBUSコネクタの以下の信号が使用可能です。
 
-<img src="images/ra/img_ra_17.png" width="700px">
+| Signal Name  | Device Name | Function                   |
+| ------------ | ----------- | -------------------------- |
+| AN           | hadca       | Analog Input               |
+| SCL/SDA      | hiica       | I2C Communication (Master) |
 
 
 ## デバッグ用シリアル通信出力
@@ -182,4 +175,5 @@
 
 | 版数      | 日付         | 内容                                                      |
 | ------- | ---------- | ------------------------------------------------------- |
+| 1.00.01 | 2025.06.04 | 英語版に合わせて一部図を変更 |
 | 1.00.00 | 2025.05.29 | 新規作成 |

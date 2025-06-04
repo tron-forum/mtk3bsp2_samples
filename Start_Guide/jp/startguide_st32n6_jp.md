@@ -13,9 +13,7 @@
 - STM32N657はTrustZoneが有効となっています。μT-Kernel 3.0はセキュアでのみ実行しますので、非セキュアは使用しません。  
   サンプルプロジェクトは、FSBL(First Stage Boot Loader)とセキュアのアプリケーションから構成され、FSBLがFLASHメモリに書き込まれたアプリケーションをRAMにロードに実行します。
 
-# 目次
-
-- [目次](#目次)
+# 目次<!-- omit in toc -->
 - [準備](#準備)
   - [μT-Kernel 3.0 BSP2のダウンロード](#μt-kernel-30-bsp2のダウンロード)
   - [STM32CubeIDEのインストール](#stm32cubeideのインストール)
