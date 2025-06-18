@@ -45,3 +45,13 @@ For more information, please see [ReadMe](Device_Samples/ReadMe_en.md).
 
 μT-Kernel 3.0のデバイス・ドライバを使用したサンプルプログラムです。A/DコンバータとI2C通信を用いたサンプルプログラムがあります。  
 詳しくは[ReadMe](Device_Samples/ReadMe_jp.md)をご覧ください。  
+
+## Examples
+These are simple example projects that use μT-Kernel 3.0.  
+
+μT-Kernel 3.0を使用した簡単なプログラム例のプロジェクトです。  
+
+| Example | Board | function |
+|-|-|-|
+| [prj_ekra8d1_lcd](Examples/prj_ekra8d1_lcd) | EK-RA8D1 | Display on LCD |
+| [prj_stm32n6_lcd](Examples/prj_stm32n6_lcd/) | STM32N6570-DK | Display on LCD |
