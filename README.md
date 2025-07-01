@@ -54,4 +54,5 @@ These are simple example projects that use μT-Kernel 3.0.
 | Example | Board | function |
 |-|-|-|
 | [prj_ekra8d1_lcd](Examples/prj_ekra8d1_lcd) | EK-RA8D1 | LCD display example project |
-| [prj_stm32n6_lcd](Examples/prj_stm32n6_lcd/) | STM32N6570-DK | LCD display example project |
+| [prj_stm32n6_lcd](Examples/prj_stm32n6_lcd) | STM32N6570-DK | LCD display example project |
+| [prj_stm32n6_cam](Examples/prj_stm32n6_cam) | STM32N6570-DK | Camera example project |
