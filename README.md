@@ -34,7 +34,7 @@ This is Start Guide for each IDE Project.
 |-|-|
 | EK-RA8M1 , EK-RA8D1 , RA4M1 Clicker | [JP](Start_Guide/jp/startguide_ra_jp.md) [EN](Start_Guide/en/startguide_ra_en.md) |
 | STM32N6570-DK | [JP](Start_Guide/jp/startguide_st32n6_jp.md) [EN](Start_Guide/en/startguide_st32n6_en.md) |
-| NUCLEO-G491RE | [JP](Start_Guide/jp/startguide_st32g9_jp.md) [EN](Start_Guide/en/startguide_st32g9_en.md) |
+| NUCLEO-G491RE | [JP](Start_Guide/jp/startguide_st32g4_jp.md) [EN](Start_Guide/en/startguide_st32g4_en.md) |
 | NUCLEO-H723ZG | [JP](Start_Guide/jp/startguide_st32h7_jp.md) [EN](Start_Guide/en/startguide_st32h7_en.md) |
 | KIT_XMC72_EVK | [JP](Start_Guide/jp/startguide_inf_jp.md) [EN](Start_Guide/en/startguide_inf_en.md) |
 | FRDM-MCXN947 | [JP](Start_Guide/jp/startguide_mcx_jp.md) [EN](Start_Guide/en/startguide_mcx_en.md) |
