@@ -1,17 +1,20 @@
 # μT-Kernel 3.0 BSP2 スタートガイド <!-- omit in toc -->
-## e² studio & RAマイコン編  Rev.01.00.01 <!-- omit in toc -->
-## 2025.06.04 <!-- omit in toc -->
+## e² studio & RAマイコン編  Rev.01.00.02 <!-- omit in toc -->
+## 2025.10.22 <!-- omit in toc -->
 
 
 # スタートガイドについて <!-- omit in toc -->
 - 本スタートガイドは、μT-Kernel 3.0 BSP2とマイコンメーカの提供するIDE(統合開発環境)を使用して、マイコンボードで実行するプログラムの作成、デバッグの基本的な方法を説明します。
   - μT-Kernel 3.0 BSP2やマイコン、IDEなどの詳細な情報は、それぞれのドキュメントを参照してください。
 
-- 本スタートガイドでは、ルネサス エレクトロニクスのIDE e² studioと以下のマイコンボードについて説明します。
-  - e² studio 2025-04にて動作確認をしました。
+- 本スタートガイドでは、ルネサス エレクトロニクスのIDE e² studioと以下のマイコンボードについて説明します。  
+- μT-Kernel 3.0 BSP2のプロジェクトは、使用するe² studioのバージョンに依存する場合があります。以下に動作確認をしたバージョンを示します。  
+  - e² studio 2025-04 (FSP v5.9.0)
       - EK-RA8M1        
       - EK-RA8D1
       - RA4M1 Clicker
+  - e² studio 2025-10 (FSP v6.2.0)
+      - Arduino UNO R4 MINIMA
 
 # 目次<!-- omit in toc -->
 - [準備](#準備)
@@ -43,6 +46,7 @@
   - EK-RA8M1 の場合　　mtk3bsp2_ra8m1.zip
   - EK-RA8D1 の場合　　mtk3bsp2_ra8d1.zip
   - RA4M1 Clicker の場合　　mtk3bsp2_ra4m1clicker.zip
+  - Arduino UNO R4 MINIMA の場合　　mtk3bsp2_ra4m1_arduno.zip
 
 
 - Zipファイルを任意のディレクトリに展開します。
@@ -98,7 +102,7 @@
 
 - 表示されたダイアログから[Renesas GDB Hardware Debugging]から対象プロジェクトのデバッグ構成を選択します。デバッグ構成は[プロジェクト名 Debug_Flat]という名称で表示されています。  
   - 該当するデバッグ構成が表示されていない場合は、[Renesas GDB Hardware Debugging]をダブルクリックしてください。直前にビルドしたプロジェクトのデバッグ構成が作成されます。ビルドの直後に操作してください。
-- 以下の図はEK-RA8D1の場合です。プロジェクト名はマイコンボードにより変わります。
+- 以下の図はEK-RA8D1の場合です。プロジェクト名やデバッグハードウェアはマイコンボードにより変わります。
 
 <img src="images/ra/img_ra_3.jpg" width="500px">
 
@@ -115,8 +119,15 @@
 <img src="images/ra/img_ra_5.jpg" width="500px">
 
 
+- Arduino UNO R4 MINIMAなどデバッグハードウェアを備えていないマイコンボードは使用するデバッグハードウェアに合わせて設定してください。
+  - Arduino UNO R4 MINIMAとE2 Liteを使用する場合の設定を以下に示します。  
+    - [Debugger]タブの中の[Connection Settings]を選択し以下の図のように設定します。  
+
+    <img src="images/ra/img_ra_6.jpg" width="500px">
+
+
 ## デバッグ実行
-- マイコンボードとPCをUSBで接続します。
+- マイコンボードとPCをUSBで接続します（Arduino UNO R4 MINIMAなどデバッグハードウェアを備えていないマイコンボードはデバッグハードウェアを介してPCを接続してください）。
 - シリアル通信を行う場合は、ボードのUARTをUSBシリアル変換器を介して、PCのUSBに接続します。
 - ダイアログの[デバッグ]ボタンを押すと、実行プログラムがボードに転送されて実行されデバッグが始まります。
 - [デバッグ・パースペクティブ]への切り替えが表示されますので[切り替え]ボタンを押下します。デバッグ画面に切り替わります。
@@ -129,10 +140,10 @@
 ## ペリフェラルの制御
 
 - μT-Kernel 3.0 BSP2は、A/DコンバータとI2C通信のサンプルデバイスドライバが組み込まれています。
-  - マイコンボードのコネクタの信号が使用可能です。
+  - マイコンボードのArduinoまたはmikroBUSコネクタの信号が使用可能です。
   - 他の信号もプロジェクトのコンフィギュレーション等の変更により使用できます
 
-- EK-RA8M1およびEK-RA8D1ではArduino互換コネクタの以下の信号が使用可能です。
+- EK-RA8M1、EK-RA8D1の場合
 
 | Signal Name  | Device Name | Function                   |
 | ------------ | ----------- | -------------------------- |
@@ -140,16 +151,33 @@
 | Arduino A1   | hadca       | Analog Input               |
 | Arduino I2C   | htiica     | I2C Communication (Master) |
 
-- RA4M1 ClickerではmikroBUSコネクタの以下の信号が使用可能です。
+- RA4M1 Clickerの場合
+
+| Signal Name      | Device Name | Function                   |
+| ---------------- | ----------- | -------------------------- |
+| mikroBUS AN      | hadca       | Analog Input               |
+| mikroBUS SCL/SDA | hiica       | I2C Communication (Master) |
+
+- Arduino UNO R4 MINIMAの場合
 
 | Signal Name  | Device Name | Function                   |
 | ------------ | ----------- | -------------------------- |
-| AN           | hadca       | Analog Input               |
-| SCL/SDA      | hiica       | I2C Communication (Master) |
+| Arduino A0   | hadca       | Analog Input               |
+| Arduino A1   | hadca       | Analog Input               |
+| Arduino I2C   | hsiica     | I2C Communication (Master) |
 
 
 ## デバッグ用シリアル通信出力
 - プログラムからのtm_printf関数によりマイコンボードのシリアル通信信号に出力できます。
+- シリアル通信信号はマイコンボードのArduinoまたはmikroBUSコネクタのUART信号を使用しています。
+  
+  | 信号          | EK-RA8M1   | EK-RA8D1   | Arduino UNO R4 | RA4M1 Clicker |
+  | ----------- | ---------- | ---------- | -------------- | ------------- | 
+  | Arduino TX  | P310(TXD3) | P409(TXD3) | P302(TXD2)     | -             | 
+  | Arduino RX  | P309(RXD3) | P408(RXD3) | P301(RXD2)     | -             | 
+  | mikroBUS TX | -          | -          | -              | P411(TXD0)    | 
+  | mikroBUS RX | -          | -          | -              | P410(RXD0)    | 
+
 - PCでターミナルソフトを実行すると、デバッグ用シリアル出力を表示することができます。
   - PCのターミナルソフトにはTera Termなどが使用できます。
   - シリアル通信の設定は以下にしてください。
@@ -175,5 +203,6 @@
 
 | 版数      | 日付         | 内容                                                      |
 | ------- | ---------- | ------------------------------------------------------- |
+| 1.00.02 | 2025.10.22 | マイコンボード Arduino UNO R4 MINIMAを追加 |
 | 1.00.01 | 2025.06.04 | 英語版に合わせて一部図を変更 |
 | 1.00.00 | 2025.05.29 | 新規作成 |

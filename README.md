@@ -13,7 +13,8 @@ This is μT-Kernel 3.0 BSP projects for various IDEs (Integrated Development Env
 |-|-|-|
 | EK-RA8M1 | tk3bsp2_ra8m1.zip | e2studio |
 | EK-RA8D1 | tk3bsp2_ra8d1.zip | e2studio |
-| RA4M1 Clicker | mtk3bsp2_ra4m1.zip | e2studio |
+| RA4M1 Clicker | mtk3bsp2_ra4m1_clicker.zip | e2studio |
+| Arduino UNO R4 MINIMA | mtk3bsp2_ra4m1_arduno.zip | e2studio |
 | STM32N6570-DK | mtk3bsp2_stm32n657X0.zip | STM32CubeIDE |
 | NUCLEO-G491RE | mtk3bsp2_stm32g491.zip | STM32CubeIDE |
 | NUCLEO-H723ZG | mtk3bsp2_stm32h723.zip | STM32CubeIDE |
@@ -33,7 +34,7 @@ This is Start Guide for each IDE Project.
 
 | Board | Start Guide |
 |-|-|
-| EK-RA8M1 , EK-RA8D1 , RA4M1 Clicker | [JP](Start_Guide/jp/startguide_ra_jp.md) [EN](Start_Guide/en/startguide_ra_en.md) |
+| EK-RA8M1 , EK-RA8D1 , RA4M1 Clicker, Arduino UNO R4 MINIMA | [JP](Start_Guide/jp/startguide_ra_jp.md) [EN](Start_Guide/en/startguide_ra_en.md) |
 | STM32N6570-DK | [JP](Start_Guide/jp/startguide_st32n6_jp.md) [EN](Start_Guide/en/startguide_st32n6_en.md) |
 | NUCLEO-G491RE | [JP](Start_Guide/jp/startguide_st32g4_jp.md) [EN](Start_Guide/en/startguide_st32g4_en.md) |
 | NUCLEO-H723ZG | [JP](Start_Guide/jp/startguide_st32h7_jp.md) [EN](Start_Guide/en/startguide_st32h7_en.md) |

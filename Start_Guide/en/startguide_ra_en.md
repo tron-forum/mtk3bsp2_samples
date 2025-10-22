@@ -1,15 +1,18 @@
 # μT-Kernel 3.0 BSP2 Start Guide <!-- omit in toc -->
-## e² studio & RA Microcontroller Edition Rev.01.00.01 <!-- omit in toc -->
-## 2025.06.04 <!-- omit in toc -->
+## e² studio & RA Microcontroller Edition Rev.01.00.02 <!-- omit in toc -->
+## 2025.10.22 <!-- omit in toc -->
 # About This Start Guide <!-- omit in toc -->
 - This start guide explains the basic steps for creating and debugging programs running on microcontroller boards using μT-Kernel 3.0 BSP2 and the IDE provided by the microcontroller vendor.
   -  For detailed information on μT-Kernel 3.0 BSP2, the microcontroller, the IDE, etc., please refer to their respective documentation.
 
-- In this guide, we cover Renesas Electronics' IDE e² studio and the following microcontroller boards:
-    - EK-RA8M1 
-    - EK-RA8D1 
-    - RA4M1 Clicker 
-  - Compatibility has been confirmed with e² studio 2025-04.
+- In this guide, we cover Renesas Electronics' IDE e² studio and the following microcontroller boards.
+- μT-Kernel 3.0 BSP2 projects may depend on the version of e² studio used. The following versions have been confirmed to work.  
+  - e² studio 2025-04 (FSP v5.9.0)
+      - EK-RA8M1        
+      - EK-RA8D1
+      - RA4M1 Clicker
+  - e² studio 2025-10 (FSP v6.2.0)
+      - Arduino UNO R4 MINIMA
 
 # Table of Contents <!-- omit in toc -->
 - [Preparation](#preparation)
@@ -39,7 +42,8 @@
   - For EK-RA8M1: mtk3bsp2_ra8m1.zip
   - For EK-RA8D1: mtk3bsp2_ra8d1.zip
   - For RA4M1 Clicker: mtk3bsp2_ra4m1clicker.zip
-
+  - Arduino UNO R4 MINIMA:  mtk3bsp2_ra4m1_arduno.zip
+  
 - Unzip the file into a directory of your choice. 
   - Be careful not to include Japanese characters in the path.
 
@@ -101,8 +105,14 @@
 
 <img src="images/ra/img_ra_5.jpg" width="500px"> 
 
+- For microcontroller boards that do not have debug hardware, such as Arduino UNO R4 MINIMA, please configure them according to the debug hardware you will be using.  
+  - The settings for using Arduino UNO R4 MINIMA and E2 Lite are shown below.    
+    - Select [Connection Settings] in the [Debugger] tab and set it as shown in the figure below.  
+
+    <img src="images/ra/img_ra_6.jpg" width="500px">
+
 ## Debug Execution
-- Connect the microcontroller board to your PC via USB. 
+- Connect the microcontroller board to your PC via USB. (For microcontroller boards that do not have debug hardware, such as Arduino UNO R4 MINIMA, please connect the PC via debug hardware.)
 - If using serial output, also connect the board's UART to the PC via a USB-serial adapter. 
 - In the Debug Configurations dialog, click [Debug]. The IDE will program the board and start the debug session. 
 - When prompted to switch to the [Debug Perspective], click [Switch].
@@ -113,9 +123,9 @@
 
 # Peripheral Control
 - μT-Kernel 3.0 BSP2 includes sample drivers for ADC and I2C.
-  - You can use the signals available on the board connectors. 
+  - The signals from the Arduino or mikroBUS connector on the microcontroller board can be used. 
   - Additional signals can be enabled by adjusting the project's configuration.
-- On EK-RA8M1 and EK-RA8D1, the Arduino-compatible connector exposes these signals:
+- For EK-RA8M1 and EK-RA8D1:
 
 | Signal Name  | Device Name | Function                   |
 | ------------ | ----------- | -------------------------- |
@@ -123,15 +133,32 @@
 | Arduino A1   | hadca       | Analog Input               |
 | Arduino I2C   | htiica     | I2C Communication (Master) |
 
-- On RA4M1 Clicker, the mikroBUS connector exposes these signals:
+- For RA4M1 Clicker:
+
+| Signal Name      | Device Name | Function                   |
+| ---------------- | ----------- | -------------------------- |
+| mikroBUS AN      | hadca       | Analog Input               |
+| mikroBUS SCL/SDA | hiica       | I2C Communication (Master) |
+
+- For Arduino UNO R4 MINIMA:
 
 | Signal Name  | Device Name | Function                   |
 | ------------ | ----------- | -------------------------- |
-| AN           | hadca       | Analog Input               |
-| SCL/SDA      | hiica       | I2C Communication (Master) |
+| Arduino A0   | hadca       | Analog Input               |
+| Arduino A1   | hadca       | Analog Input               |
+| Arduino I2C   | hsiica     | I2C Communication (Master) |
 
 # Debug Serial Output
 - Use tm_printf in your code to send debug messages over the board's UART. 
+- シリアル通信信号はマイコンボードのArduinoまたはmikroBUSコネクタのUART信号を使用しています。
+  
+  | 信号          | EK-RA8M1   | EK-RA8D1   | Arduino UNO R4 | RA4M1 Clicker |
+  | ----------- | ---------- | ---------- | -------------- | ------------- | 
+  | Arduino TX  | P310(TXD3) | P409(TXD3) | P302(TXD2)     | -             | 
+  | Arduino RX  | P309(RXD3) | P408(RXD3) | P301(RXD2)     | -             | 
+  | mikroBUS TX | -          | -          | -              | P411(TXD0)    | 
+  | mikroBUS RX | -          | -          | -              | P410(RXD0)    | 
+
 - Run a terminal emulator (e.g., Tera Term) on your PC to view the output. 
   - Use the following serial settings:
   
@@ -150,5 +177,6 @@
 # Change History
 | Version  | Date       | Description |
 | -------- | ---------- | ----------- |
+| 1.00.02 | 2025.10.22 | Add Arduino UNO R4 MINIMA microcontroller board |
 | 1.00.01  | 2025.06.04 | Initial release (The version number is the same as the Japanese version) |
 ```
