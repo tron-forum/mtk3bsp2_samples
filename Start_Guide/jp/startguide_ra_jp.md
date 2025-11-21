@@ -1,6 +1,6 @@
 # μT-Kernel 3.0 BSP2 スタートガイド <!-- omit in toc -->
-## e² studio & RAマイコン編  Rev.01.00.02 <!-- omit in toc -->
-## 2025.10.22 <!-- omit in toc -->
+## e² studio & RAマイコン編  Rev.01.00.03 <!-- omit in toc -->
+## 2025.11.21 <!-- omit in toc -->
 
 
 # スタートガイドについて <!-- omit in toc -->
@@ -15,6 +15,7 @@
       - RA4M1 Clicker
   - e² studio 2025-10 (FSP v6.2.0)
       - Arduino UNO R4 MINIMA
+      - FPB-RA4E1
 
 # 目次<!-- omit in toc -->
 - [準備](#準備)
@@ -43,10 +44,13 @@
 
 - ダウンロードするプロジェクトは以下のZipファイルです。
 
-  - EK-RA8M1 の場合　　mtk3bsp2_ra8m1.zip
-  - EK-RA8D1 の場合　　mtk3bsp2_ra8d1.zip
-  - RA4M1 Clicker の場合　　mtk3bsp2_ra4m1clicker.zip
-  - Arduino UNO R4 MINIMA の場合　　mtk3bsp2_ra4m1_arduno.zip
+| ボード                   | ダウンロードするZipファイル           |
+| --------------------- | ------------------------- |
+| EK-RA8M1              | mtk3bsp2_ra8m1.zip        |
+| EK-RA8D1              | mtk3bsp2_ra8d1.zip        |
+| FPB-RA4E1             | mtk3bsp2_ra4e1_fpb.zip    |
+| RA4M1 Clicker         | mtk3bsp2_ra4m1clicker.zip |
+| Arduino UNO R4 MINIMA | mtk3bsp2_ra4m1_arduno.zip |
 
 
 - Zipファイルを任意のディレクトリに展開します。
@@ -145,11 +149,19 @@
 
 - EK-RA8M1、EK-RA8D1の場合
 
-| Signal Name  | Device Name | Function                   |
-| ------------ | ----------- | -------------------------- |
-| Arduino A0   | hadca       | Analog Input               |
-| Arduino A1   | hadca       | Analog Input               |
-| Arduino I2C   | htiica     | I2C Communication (Master) |
+| Signal Name | Device Name | Function                   |
+| ----------- | ----------- | -------------------------- |
+| Arduino A0  | hadca       | Analog Input               |
+| Arduino A1  | hadca       | Analog Input               |
+| Arduino I2C | htiica      | I2C Communication (Master) |
+
+- FPB-RA4E1の場合
+
+| Signal Name | Device Name | Function                   |
+| ----------- | ----------- | -------------------------- |
+| Arduino A0  | hadca       | Analog Input               |
+| Arduino A1  | hadca       | Analog Input               |
+| Arduino I2C | hiica       | I2C Communication (Master) |
 
 - RA4M1 Clickerの場合
 
@@ -160,23 +172,23 @@
 
 - Arduino UNO R4 MINIMAの場合
 
-| Signal Name  | Device Name | Function                   |
-| ------------ | ----------- | -------------------------- |
-| Arduino A0   | hadca       | Analog Input               |
-| Arduino A1   | hadca       | Analog Input               |
-| Arduino I2C   | hsiica     | I2C Communication (Master) |
+| Signal Name | Device Name | Function                   |
+| ----------- | ----------- | -------------------------- |
+| Arduino A0  | hadca       | Analog Input               |
+| Arduino A1  | hadca       | Analog Input               |
+| Arduino I2C | hsiica      | I2C Communication (Master) |
 
 
 ## デバッグ用シリアル通信出力
 - プログラムからのtm_printf関数によりマイコンボードのシリアル通信信号に出力できます。
 - シリアル通信信号はマイコンボードのArduinoまたはmikroBUSコネクタのUART信号を使用しています。
   
-  | 信号          | EK-RA8M1   | EK-RA8D1   | Arduino UNO R4 | RA4M1 Clicker |
-  | ----------- | ---------- | ---------- | -------------- | ------------- | 
-  | Arduino TX  | P310(TXD3) | P409(TXD3) | P302(TXD2)     | -             | 
-  | Arduino RX  | P309(RXD3) | P408(RXD3) | P301(RXD2)     | -             | 
-  | mikroBUS TX | -          | -          | -              | P411(TXD0)    | 
-  | mikroBUS RX | -          | -          | -              | P410(RXD0)    | 
+| 信号          | EK-RA8M1   | EK-RA8D1   | FPB-RA4E1  | Arduino UNO R4 | RA4M1 Clicker |
+| ----------- | ---------- | ---------- | ---------- | -------------- | ------------- |
+| Arduino TX  | P310(TXD3) | P409(TXD3) | P109(TXD9) | P302(TXD2)     | -             |
+| Arduino RX  | P309(RXD3) | P408(RXD3) | P110(RXD9) | P301(RXD2)     | -             |
+| mikroBUS TX | -          | -          | -          | -              | P411(TXD0)    |
+| mikroBUS RX | -          | -          | -          | -              | P410(RXD0)    |
 
 - PCでターミナルソフトを実行すると、デバッグ用シリアル出力を表示することができます。
   - PCのターミナルソフトにはTera Termなどが使用できます。
@@ -201,8 +213,9 @@
 
 # 変更履歴
 
-| 版数      | 日付         | 内容                                                      |
-| ------- | ---------- | ------------------------------------------------------- |
+| 版数      | 日付         | 内容                               |
+| ------- | ---------- | -------------------------------- |
+| 1.00.03 | 2025.11.21 | マイコンボード FPB-RA4E1を追加             |
 | 1.00.02 | 2025.10.22 | マイコンボード Arduino UNO R4 MINIMAを追加 |
-| 1.00.01 | 2025.06.04 | 英語版に合わせて一部図を変更 |
-| 1.00.00 | 2025.05.29 | 新規作成 |
+| 1.00.01 | 2025.06.04 | 英語版に合わせて一部図を変更                   |
+| 1.00.00 | 2025.05.29 | 新規作成                             |

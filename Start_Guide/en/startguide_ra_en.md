@@ -1,6 +1,6 @@
 # μT-Kernel 3.0 BSP2 Start Guide <!-- omit in toc -->
-## e² studio & RA Microcontroller Edition Rev.01.00.02 <!-- omit in toc -->
-## 2025.10.22 <!-- omit in toc -->
+## e² studio & RA Microcontroller Edition Rev.01.00.03 <!-- omit in toc -->
+## 2025.11.21 <!-- omit in toc -->
 # About This Start Guide <!-- omit in toc -->
 - This start guide explains the basic steps for creating and debugging programs running on microcontroller boards using μT-Kernel 3.0 BSP2 and the IDE provided by the microcontroller vendor.
   -  For detailed information on μT-Kernel 3.0 BSP2, the microcontroller, the IDE, etc., please refer to their respective documentation.
@@ -13,6 +13,7 @@
       - RA4M1 Clicker
   - e² studio 2025-10 (FSP v6.2.0)
       - Arduino UNO R4 MINIMA
+      - FPB-RA4E1
 
 # Table of Contents <!-- omit in toc -->
 - [Preparation](#preparation)
@@ -39,10 +40,14 @@
   - https://github.com/tronforum/mtk3bsp2_samples/tree/main/IDE_Projects
 
 - Choose one of the following ZIP files:
-  - For EK-RA8M1: mtk3bsp2_ra8m1.zip
-  - For EK-RA8D1: mtk3bsp2_ra8d1.zip
-  - For RA4M1 Clicker: mtk3bsp2_ra4m1clicker.zip
-  - Arduino UNO R4 MINIMA:  mtk3bsp2_ra4m1_arduno.zip
+
+| board                 | Zip File                  |
+| --------------------- | ------------------------- |
+| EK-RA8M1              | mtk3bsp2_ra8m1.zip        |
+| EK-RA8D1              | mtk3bsp2_ra8d1.zip        |
+| FPB-RA4E1             | mtk3bsp2_ra4e1_fpb.zip    |
+| RA4M1 Clicker         | mtk3bsp2_ra4m1clicker.zip |
+| Arduino UNO R4 MINIMA | mtk3bsp2_ra4m1_arduno.zip |
   
 - Unzip the file into a directory of your choice. 
   - Be careful not to include Japanese characters in the path.
@@ -133,6 +138,14 @@
 | Arduino A1   | hadca       | Analog Input               |
 | Arduino I2C   | htiica     | I2C Communication (Master) |
 
+- For FPB-RA4E1
+
+| Signal Name | Device Name | Function                   |
+| ----------- | ----------- | -------------------------- |
+| Arduino A0  | hadca       | Analog Input               |
+| Arduino A1  | hadca       | Analog Input               |
+| Arduino I2C | hiica       | I2C Communication (Master) |
+
 - For RA4M1 Clicker:
 
 | Signal Name      | Device Name | Function                   |
@@ -152,12 +165,12 @@
 - Use tm_printf in your code to send debug messages over the board's UART. 
 - シリアル通信信号はマイコンボードのArduinoまたはmikroBUSコネクタのUART信号を使用しています。
   
-  | 信号          | EK-RA8M1   | EK-RA8D1   | Arduino UNO R4 | RA4M1 Clicker |
-  | ----------- | ---------- | ---------- | -------------- | ------------- | 
-  | Arduino TX  | P310(TXD3) | P409(TXD3) | P302(TXD2)     | -             | 
-  | Arduino RX  | P309(RXD3) | P408(RXD3) | P301(RXD2)     | -             | 
-  | mikroBUS TX | -          | -          | -              | P411(TXD0)    | 
-  | mikroBUS RX | -          | -          | -              | P410(RXD0)    | 
+| Signal      | EK-RA8M1   | EK-RA8D1   | FPB-RA4E1  | Arduino UNO R4 | RA4M1 Clicker |
+| ----------- | ---------- | ---------- | ---------- | -------------- | ------------- |
+| Arduino TX  | P310(TXD3) | P409(TXD3) | P109(TXD9) | P302(TXD2)     | -             |
+| Arduino RX  | P309(RXD3) | P408(RXD3) | P110(RXD9) | P301(RXD2)     | -             |
+| mikroBUS TX | -          | -          | -          | -              | P411(TXD0)    |
+| mikroBUS RX | -          | -          | -          | -              | P410(RXD0)    |
 
 - Run a terminal emulator (e.g., Tera Term) on your PC to view the output. 
   - Use the following serial settings:
@@ -175,8 +188,9 @@
 ![J-Link RTT Viewer](images/ra/img_ra_19.png)
 
 # Change History
-| Version  | Date       | Description |
-| -------- | ---------- | ----------- |
-| 1.00.02 | 2025.10.22 | Add Arduino UNO R4 MINIMA microcontroller board |
-| 1.00.01  | 2025.06.04 | Initial release (The version number is the same as the Japanese version) |
+| Version | Date       | Description                                                              |
+| ------- | ---------- | ------------------------------------------------------------------------ |
+| 1.00.03 | 2025.11.21 | Add Board (FPB-RA4E1)                                                    |
+| 1.00.02 | 2025.10.22 | Add Board (Arduino UNO R4 MINIMA board)                                  |
+| 1.00.01 | 2025.06.04 | Initial release (The version number is the same as the Japanese version) |
 ```
