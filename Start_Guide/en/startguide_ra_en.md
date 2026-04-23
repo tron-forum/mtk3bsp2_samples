@@ -1,6 +1,6 @@
 # μT-Kernel 3.0 BSP2 Start Guide <!-- omit in toc -->
-## e² studio & RA Microcontroller Edition Rev.01.00.03 <!-- omit in toc -->
-## 2025.11.21 <!-- omit in toc -->
+## e² studio & RA Microcontroller Edition Rev.01.00.04 <!-- omit in toc -->
+## 2026.04.23 <!-- omit in toc -->
 # About This Start Guide <!-- omit in toc -->
 - This start guide explains the basic steps for creating and debugging programs running on microcontroller boards using μT-Kernel 3.0 BSP2 and the IDE provided by the microcontroller vendor.
   -  For detailed information on μT-Kernel 3.0 BSP2, the microcontroller, the IDE, etc., please refer to their respective documentation.
@@ -14,6 +14,8 @@
   - e² studio 2025-10 (FSP v6.2.0)
       - Arduino UNO R4 MINIMA
       - FPB-RA4E1
+  - e² studio 2025-12 (FSP v6.4.0)
+      - EK-RA8P1
 
 # Table of Contents <!-- omit in toc -->
 - [Preparation](#preparation)
@@ -43,6 +45,7 @@
 
 | board                 | Zip File                  |
 | --------------------- | ------------------------- |
+| EK-RA8P1              | mtk3bsp2_ra8p1_ek.zip     |
 | EK-RA8M1              | mtk3bsp2_ra8m1.zip        |
 | EK-RA8D1              | mtk3bsp2_ra8d1.zip        |
 | FPB-RA4E1             | mtk3bsp2_ra4e1_fpb.zip    |
@@ -87,7 +90,7 @@
 - Write your application code under the Application directory of the μT-Kernel 3.0 BSP2 project. 
   - You can create this directory anywhere you like.
   - Keeping it separate from the BSP2 files makes future BSP upgrades easier.
-- By default, app_main.c contains two tasks: one toggles the board LEDs and the other outputs debug messages over serial.
+- In its initial state, the app_main.c file contains a program that executes multiple tasks, each of which blinks an LED on the board and outputs debug serial output.
 
 ## Creating a Debug Configuration
 - With the project selected, go to [Run] → [Debug Configurations]. 
@@ -129,7 +132,18 @@
 # Peripheral Control
 - μT-Kernel 3.0 BSP2 includes sample drivers for ADC and I2C.
   - The signals from the Arduino or mikroBUS connector on the microcontroller board can be used. 
-  - Additional signals can be enabled by adjusting the project's configuration.
+  - Additional signals can be enabled by adjusting the project's configuration.  
+
+- For EK-RA8P1
+
+| Signal Name | Device Name | Channel | Function                   |
+| ----------- | ----------- | ------- | -------------------------- |
+| Arduino A0  | hadhba      |    1    | Analog Input               |
+| Arduino A1  | hadhba      |    7    | Analog Input               |
+| Arduino A2  | hadhba      |    3    | Analog Input               |
+| Arduino A3  | hadhba      |    4    | Analog Input               |
+| Arduino I2C | hiica       |    -    | I2C Communication (Master) |
+
 - For EK-RA8M1 and EK-RA8D1:
 
 | Signal Name  | Device Name | Function                   |
@@ -162,15 +176,24 @@
 | Arduino I2C   | hsiica     | I2C Communication (Master) |
 
 # Debug Serial Output
-- Use tm_printf in your code to send debug messages over the board's UART. 
-- シリアル通信信号はマイコンボードのArduinoまたはmikroBUSコネクタのUART信号を使用しています。
-  
-| Signal      | EK-RA8M1   | EK-RA8D1   | FPB-RA4E1  | Arduino UNO R4 | RA4M1 Clicker |
-| ----------- | ---------- | ---------- | ---------- | -------------- | ------------- |
-| Arduino TX  | P310(TXD3) | P409(TXD3) | P109(TXD9) | P302(TXD2)     | -             |
-| Arduino RX  | P309(RXD3) | P408(RXD3) | P110(RXD9) | P301(RXD2)     | -             |
-| mikroBUS TX | -          | -          | -          | -              | P411(TXD0)    |
-| mikroBUS RX | -          | -          | -          | -              | P410(RXD0)    |
+- Use tm_printf in your code to send debug messages over the board's UART.   
+- The serial communication signals use the following UART signals on the microcontroller board.  
+
+| Signal                      | EK-RA8P1      |
+| --------------------------- | ------------- |
+| Debug Connector (USB) TX    | PD02(TXD8) |
+| Debug Connector (USB) RX    | PD03(RXD8) |
+
+
+| Signal      | EK-RA8M1   | EK-RA8D1   | FPB-RA4E1  | Arduino UNO R4 |
+| ----------- | ---------- | ---------- | ---------- | -------------- |
+| Arduino TX  | P310(TXD3) | P409(TXD3) | P109(TXD9) | P302(TXD2)     |
+| Arduino RX  | P309(RXD3) | P408(RXD3) | P110(RXD9) | P301(RXD2)     |
+
+| Signal      | RA4M1 Clicker |
+| ----------- | ------------- |
+| mikroBUS TX | P411(TXD0)    |
+| mikroBUS RX | P410(RXD0)    |
 
 - Run a terminal emulator (e.g., Tera Term) on your PC to view the output. 
   - Use the following serial settings:
@@ -190,6 +213,7 @@
 # Change History
 | Version | Date       | Description                                                              |
 | ------- | ---------- | ------------------------------------------------------------------------ |
+| 1.00.04 | 2026.04.23 | Add Board (EK-RA8P1)                                                     |
 | 1.00.03 | 2025.11.21 | Add Board (FPB-RA4E1)                                                    |
 | 1.00.02 | 2025.10.22 | Add Board (Arduino UNO R4 MINIMA board)                                  |
 | 1.00.01 | 2025.06.04 | Initial release (The version number is the same as the Japanese version) |

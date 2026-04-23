@@ -1,6 +1,6 @@
 # μT-Kernel 3.0 BSP2 スタートガイド <!-- omit in toc -->
-## e² studio & RAマイコン編  Rev.01.00.03 <!-- omit in toc -->
-## 2025.11.21 <!-- omit in toc -->
+## e² studio & RAマイコン編  Rev.01.00.04 <!-- omit in toc -->
+## 2026.04.23 <!-- omit in toc -->
 
 
 # スタートガイドについて <!-- omit in toc -->
@@ -16,6 +16,9 @@
   - e² studio 2025-10 (FSP v6.2.0)
       - Arduino UNO R4 MINIMA
       - FPB-RA4E1
+  - e² studio 2025-12 (FSP v6.4.0)
+      - EK-RA8P1
+
 
 # 目次<!-- omit in toc -->
 - [準備](#準備)
@@ -46,6 +49,7 @@
 
 | ボード                   | ダウンロードするZipファイル           |
 | --------------------- | ------------------------- |
+| EK-RA8P1              | mtk3bsp2_ra8p1_ek.zip     |
 | EK-RA8M1              | mtk3bsp2_ra8m1.zip        |
 | EK-RA8D1              | mtk3bsp2_ra8d1.zip        |
 | FPB-RA4E1             | mtk3bsp2_ra4e1_fpb.zip    |
@@ -99,7 +103,7 @@
 - μT-Kernel 3.0 BSP2のApplicationディレクトリにユーザプログラムを記述します。
   - ユーザプログラムのディレクトリは任意の場所に作成可能です。
   - 他のディレクトリから独立に作成しておくと、BSP2のバージョンアップの際に移行が楽になります。
-- 初期状態では、タスクを2つ実行し、それぞれのタスクがボード上のLEDの点滅とデバッグ用シリアル出力を行うプログラムがapp_main.cファイルに記述されています。
+- 初期状態では、複数のタスクを実行し、それぞれのタスクがボード上のLEDの点滅とデバッグ用シリアル出力を行うプログラムがapp_main.cファイルに記述されています。
 
 ## デバッグ構成の作成
 - プロジェクトマネージャーのプロジェクト名を選択した状態でメニュー[実行]から[デバッグの構成]を選びます。
@@ -147,6 +151,16 @@
   - マイコンボードのArduinoまたはmikroBUSコネクタの信号が使用可能です。
   - 他の信号もプロジェクトのコンフィギュレーション等の変更により使用できます
 
+- EK-RA8P1の場合
+
+| Signal Name | Device Name | Channel | Function                   |
+| ----------- | ----------- | ------- | -------------------------- |
+| Arduino A0  | hadhba      |    1    | Analog Input               |
+| Arduino A1  | hadhba      |    7    | Analog Input               |
+| Arduino A2  | hadhba      |    3    | Analog Input               |
+| Arduino A3  | hadhba      |    4    | Analog Input               |
+| Arduino I2C | hiica       |    -    | I2C Communication (Master) |
+
 - EK-RA8M1、EK-RA8D1の場合
 
 | Signal Name | Device Name | Function                   |
@@ -181,14 +195,24 @@
 
 ## デバッグ用シリアル通信出力
 - プログラムからのtm_printf関数によりマイコンボードのシリアル通信信号に出力できます。
-- シリアル通信信号はマイコンボードのArduinoまたはmikroBUSコネクタのUART信号を使用しています。
-  
-| 信号          | EK-RA8M1   | EK-RA8D1   | FPB-RA4E1  | Arduino UNO R4 | RA4M1 Clicker |
-| ----------- | ---------- | ---------- | ---------- | -------------- | ------------- |
-| Arduino TX  | P310(TXD3) | P409(TXD3) | P109(TXD9) | P302(TXD2)     | -             |
-| Arduino RX  | P309(RXD3) | P408(RXD3) | P110(RXD9) | P301(RXD2)     | -             |
-| mikroBUS TX | -          | -          | -          | -              | P411(TXD0)    |
-| mikroBUS RX | -          | -          | -          | -              | P410(RXD0)    |
+- シリアル通信信号はマイコンボードの以下のUART信号を使用しています。
+
+| 信号                        | EK-RA8P1      |
+| --------------------------- | ------------- |
+| Debug Connector (USB) TX    | PD02(TXD8) |
+| Debug Connector (USB) RX    | PD03(RXD8) |
+
+
+| 信号        | EK-RA8M1   | EK-RA8D1   | FPB-RA4E1  | Arduino UNO R4 |
+| ----------- | ---------- | ---------- | ---------- | -------------- |
+| Arduino TX  | P310(TXD3) | P409(TXD3) | P109(TXD9) | P302(TXD2)     |
+| Arduino RX  | P309(RXD3) | P408(RXD3) | P110(RXD9) | P301(RXD2)     |
+
+| 信号        | RA4M1 Clicker |
+| ----------- | ------------- |
+| mikroBUS TX | P411(TXD0)    |
+| mikroBUS RX | P410(RXD0)    |
+
 
 - PCでターミナルソフトを実行すると、デバッグ用シリアル出力を表示することができます。
   - PCのターミナルソフトにはTera Termなどが使用できます。
@@ -215,6 +239,7 @@
 
 | 版数      | 日付         | 内容                               |
 | ------- | ---------- | -------------------------------- |
+| 1.00.04 | 2026.04.23 | マイコンボード EK-RA8P1を追加              |
 | 1.00.03 | 2025.11.21 | マイコンボード FPB-RA4E1を追加             |
 | 1.00.02 | 2025.10.22 | マイコンボード Arduino UNO R4 MINIMAを追加 |
 | 1.00.01 | 2025.06.04 | 英語版に合わせて一部図を変更                   |

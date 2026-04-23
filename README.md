@@ -11,6 +11,7 @@ This is μT-Kernel 3.0 BSP projects for various IDEs (Integrated Development Env
 
 | Board | Project file | IDE |
 |-|-|-|
+| EK-RA8P1 | mtk3bsp2_ra8p1.zip | e2studio |
 | EK-RA8M1 | mtk3bsp2_ra8m1.zip | e2studio |
 | EK-RA8D1 | mtk3bsp2_ra8d1.zip | e2studio |
 | FPB-RA4E1 | mtk3bsp2_ra4e1_fpb.zip | e2studio |
