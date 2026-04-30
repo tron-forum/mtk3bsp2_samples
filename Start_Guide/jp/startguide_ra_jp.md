@@ -15,9 +15,9 @@
       - RA4M1 Clicker
   - e² studio 2025-10 (FSP v6.2.0)
       - Arduino UNO R4 MINIMA
-      - FPB-RA4E1
   - e² studio 2025-12 (FSP v6.4.0)
       - EK-RA8P1
+      - FPB-RA4E1
 
 
 # 目次<!-- omit in toc -->
@@ -171,11 +171,13 @@
 
 - FPB-RA4E1の場合
 
-| Signal Name | Device Name | Function                   |
-| ----------- | ----------- | -------------------------- |
-| Arduino A0  | hadca       | Analog Input               |
-| Arduino A1  | hadca       | Analog Input               |
-| Arduino I2C | hiica       | I2C Communication (Master) |
+| Signal Name | Device Name | channel | Function                   |
+| ----------- | ----------- | ------- | -------------------------- |
+| Arduino A0  | hadca       |    0    | Analog Input               |
+| Arduino A1  | hadca       |    1    | Analog Input               |
+| Arduino A2  | hadca       |    2    | Analog Input               |
+| Arduino A3  | hadca       |    3    | Analog Input               |
+| Arduino I2C | hiica       |    -    | I2C Communication (Master) |
 
 - RA4M1 Clickerの場合
 
