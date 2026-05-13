@@ -1,10 +1,10 @@
 # μT-Kernel 3.0 BSP2 Start Guide <!-- omit in toc --> 
-## STM32Cube & NUCLEO-H533RE Edition  Rev.01.00.00 <!-- omit in toc --> 
-## 2025.09.19 <!-- omit in toc -->
+## STM32Cube & NUCLEO-H533RE Edition  Rev.01.00.01 <!-- omit in toc --> 
+## 2026.05.01 <!-- omit in toc -->
 ## About this Start Guide <!-- omit in toc -->
 This start guide explains the basic methods for creating and debugging programs running on the NUCLEO‐H533RE microcontroller board, using μT-Kernel 3.0 BSP2 and the IDE (integrated development environment) provided by the microcontroller manufacturer.
 For detailed information about μT-Kernel 3.0 BSP2, the microcontroller, the IDE, etc., please refer to their respective documentation.
-This guide covers STMicroelectronics' IDE STM32CubeIDE and the NUCLEO-H533RE board. It was verified to work with STM32CubeIDE 1.19.0.
+This guide covers STMicroelectronics' IDE STM32CubeIDE and the NUCLEO-H533RE board. It was verified to work with STM32CubeIDE 2.1.1.
 
 # Contents <!-- omit in toc -->
 - [Preparation](#preparation)
@@ -109,4 +109,5 @@ This guide covers STMicroelectronics' IDE STM32CubeIDE and the NUCLEO-H533RE boa
 # Revision History
 | Version  | Date       | Description          |
 | -------- | ---------- | -------------------- |
+| 1.00.01  | 2026.05.01 | Updated to support IDE version upgrades. |
 | 1.00.00  | 2025.09.19 | Initial creation |

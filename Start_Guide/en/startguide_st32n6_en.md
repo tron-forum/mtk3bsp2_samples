@@ -1,11 +1,11 @@
 # μT-Kernel 3.0 BSP2 Start Guide <!-- omit in toc -->
-## STM32Cube & STM32N6570-DK Edition Rev.01.00.00 <!-- omit in toc -->
-## 2025.06.02 <!-- omit in toc -->
+## STM32Cube & STM32N6570-DK Edition Rev.01.00.01 <!-- omit in toc -->
+## 2026.05.11 <!-- omit in toc -->
 ## About This Start Guide <!-- omit in toc -->
 - This start guide explains the basic procedures for creating and debugging programs that run on a microcontroller board using μT Kernel 3.0 BSP2 together with the IDE (Integrated Development Environment) provided by the microcontroller manufacturer.
   - For detailed information on μT Kernel 3.0 BSP2, the microcontroller, the IDE, etc., please refer to their respective documentation.
 - In this guide, we cover STMicroelectronics' IDE STM32CubeIDE and the STM32N6570-DK microcontroller board.
-  - We have verified operation on STM32CubeIDE 1.18.1.
+  - We have verified operation on STM32CubeIDE 2.1.1.
 - The STM32N657 has TrustZone enabled. μT Kernel 3.0 runs only in secure mode; non-secure mode is not used. 
   - The sample project consists of an FSBL (First Stage Boot Loader) and a secure application. The FSBL loads the application from FLASH into RAM and then executes it.
 
@@ -140,4 +140,5 @@
 # Revision History
 | Version | Date       | Description      |
 | ------- | ---------- | ---------------- |
+| 1.00.01 | 2026.05.11 | Updated to support IDE version upgrades. |
 | 1.00.00 | 2025.06.02 | Initial release  |
