@@ -1,6 +1,6 @@
 # μT-Kernel 3.0 BSP2 スタートガイド <!-- omit in toc -->
-## e² studio & RAマイコン編  Rev.01.00.04 <!-- omit in toc -->
-## 2026.04.23 <!-- omit in toc -->
+## e² studio & RAマイコン編  Rev.01.00.05 <!-- omit in toc -->
+## 2026.07.06 <!-- omit in toc -->
 
 
 # スタートガイドについて <!-- omit in toc -->
@@ -16,8 +16,9 @@
   - e² studio 2025-10 (FSP v6.2.0)
       - Arduino UNO R4 MINIMA
   - e² studio 2025-12 (FSP v6.4.0)
-      - EK-RA8P1
       - FPB-RA4E1
+  - e² studio 2026-4.2 (FSP v6.5.0)
+      - EK-RA8P1
 
 
 # 目次<!-- omit in toc -->
